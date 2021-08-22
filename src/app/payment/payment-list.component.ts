@@ -1,17 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { IPayment } from './payment';
 
 @Component({
   selector: 'app-payments',
   templateUrl: './payment-list.component.html',
   styleUrls: ['./payment-list.component.css'],
 })
-export class PaymentListComponent {
-  paymentName: String = 'test';
-  paymentList: String = 'payment list';
-  paymentAmount: any = 1000;
-  whole: any = 1000;
-  deadline: String = '20.12.2021';
-  payments: any[] = [
+export class PaymentListComponent implements OnInit {
+  paymentOwner: string = 'testUser';
+  displayAddPaymentWindow: boolean = false;
+  chosenPaymentIndex: number = 0;
+  isMeantToBeModified: boolean = false;
+  paymentCandidate:IPayment = {
+      paymentTitle: '',
+      amountOfOnePayment: 0,
+      wholeAmount: 0,
+      deadline: ''
+  };
+
+  payments: IPayment[] = [
     {
       paymentTitle: 'czynsz',
       amountOfOnePayment: 200,
@@ -25,21 +32,39 @@ export class PaymentListComponent {
       deadline: '23.12.2021',
     },
   ];
-  displayAddPaymentWindow: boolean = false;
 
   toggleAddPaymentWindow(): void {
+    this.paymentCandidate = { 
+      paymentTitle: '',
+      amountOfOnePayment: 0,
+      wholeAmount: 0,
+      deadline: ''
+    }
+    this.isMeantToBeModified = false;
     this.displayAddPaymentWindow = !this.displayAddPaymentWindow;
     console.log(this.displayAddPaymentWindow);
   }
 
-  letsDoThis(): void {
-    this.payments.push({
-      paymentTitle: this.paymentName,
-      amountOfOnePayment: this.paymentAmount,
-      wholeAmount: this.whole,
-      deadline: this.deadline,
-    });
-    console.log(this.payments);
+  onPaymentAdded(payment: IPayment): void {
+    this.payments.push(payment);
+    console.log(payment);
     this.toggleAddPaymentWindow();
   }
+  
+  onPaymentModified(payment: IPayment, index: number): void{
+    this.payments[index]=payment;
+    console.log(payment);
+    this.toggleAddPaymentWindow();
+  }
+
+  onTableRowClicked(index: number): void {
+    this.isMeantToBeModified = true;
+    this.chosenPaymentIndex = index;
+    this.paymentCandidate = this.payments[index];
+    this.displayAddPaymentWindow = !this.displayAddPaymentWindow;
+    // this.payments.splice(index, 1);
+    console.log(this.isMeantToBeModified)
+  }
+
+  ngOnInit(): void {}
 }

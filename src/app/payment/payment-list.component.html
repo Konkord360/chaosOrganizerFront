@@ -16,29 +16,9 @@
         </div> -->
 
         <div *ngIf='displayAddPaymentWindow == true' class='addNewPaymentWindow'>
-            <h1>Add payment</h1>
-            <form (ngSubmit)='letsDoThis()'>
-                <table class='table'>
-                    <thead>
-                        <tr>
-                            <th>Payment Title</th>
-                            <th>Amount of one payment</th>
-                            <th>Whole amount</th>
-                            <th>Deadline</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><input type="text" [(ngModel)]='paymentName' name='paymentName' /></td>
-                            <td><input type="text" [(ngModel)]='paymentAmount' name='paymentAmount' /></td>
-                            <td><input type="text" [(ngModel)]='whole' name='whole' /></td>
-                            <td><input type="text" [(ngModel)]='deadline' name='deadline' /></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br />
-                <button type="submit">Submit</button>
-            </form>
+            <payment-addition [isInModificationMode]='isMeantToBeModified' 
+            [newPayment]='paymentCandidate' (addPayment)='onPaymentAdded($event)' (paymentModified)='onPaymentModified($event, chosenPaymentIndex)'>
+            </payment-addition>
         </div>
         <br />
         <div class='table-responsive'>
@@ -54,14 +34,15 @@
                         <th>Amount of one payment</th>
                         <th>Whole amount</th>
                         <th>Deadline</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor='let payment of payments'>
+                    <tr *ngFor='let payment of payments; let i = index' (click)='onTableRowClicked(i)'>
                         <td></td>
                         <td>{{payment.paymentTitle}}</td>
                         <td>{{payment.amountOfOnePayment | currency: 'PLN':'symbol'}}</td>
-                        <td>{{payment.wholeAmount | currency: "zł":"symbol"}}</td>
+                        <td>{{payment.wholeAmount | currency: 'PLN':'symbol'}}</td>
                         <td>{{payment.deadline}}</td>
                     </tr>
                 </tbody>

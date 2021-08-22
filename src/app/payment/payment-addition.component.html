@@ -1,0 +1,54 @@
+<h1>Add payment</h1>
+<div>
+    <div *ngIf='isInModificationMode'>
+        <form (ngSubmit)='modifyPayment()'>
+            <table class='table'>
+                <thead>
+                    <tr>
+                        <th>Payment Title</th>
+                        <th>Amount of one payment</th>
+                        <th>Whole amount</th>
+                        <th>Deadline</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" [(ngModel)]='newPayment.paymentTitle' name='paymentName' /></td>
+                        <td><input type="text" [(ngModel)]='newPayment.amountOfOnePayment' name='paymentAmount' /></td>
+                        <td><input type="text" [(ngModel)]='newPayment.wholeAmount' name='whole' /></td>
+                        <td><input type="text" [(ngModel)]='newPayment.deadline' name='deadline' /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+            <button type="submit">Modify</button>
+            <button (click)='onDelete()'>Delete</button>
+            <button>Cancel</button>
+        </form>
+    </div>
+    <div *ngIf='isInModificationMode == false'>
+        <form (ngSubmit)='addNewPayment()'>
+            <table class='table'>
+                <thead>
+                    <tr>
+                        <th>Payment Title</th>
+                        <th>Amount of one payment</th>
+                        <th>Whole amount</th>
+                        <th>Deadline</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" [(ngModel)]='newPayment.paymentTitle' name='paymentName' /></td>
+                        <td><input type="text" [(ngModel)]='newPayment.amountOfOnePayment' name='paymentAmount' /></td>
+                        <td><input type="text" [(ngModel)]='newPayment.wholeAmount' name='whole' /></td>
+                        <td><input type="text" [(ngModel)]='newPayment.deadline' name='deadline' /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+            <button type="submit">Add new payment</button>
+            <button>Cancel</button>
+        </form>
+    </div>
+</div>
