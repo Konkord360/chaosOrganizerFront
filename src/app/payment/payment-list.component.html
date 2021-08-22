@@ -60,8 +60,8 @@
                     <tr *ngFor='let payment of payments'>
                         <td></td>
                         <td>{{payment.paymentTitle}}</td>
-                        <td>{{payment.amountOfOnePayment}}</td>
-                        <td>{{payment.wholeAmount}}</td>
+                        <td>{{payment.amountOfOnePayment | currency: 'PLN':'symbol'}}</td>
+                        <td>{{payment.wholeAmount | currency: "zł":"symbol"}}</td>
                         <td>{{payment.deadline}}</td>
                     </tr>
                 </tbody>
