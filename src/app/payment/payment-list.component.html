@@ -1,0 +1,71 @@
+<div class='card'>
+    <!-- <div class='card-header'>
+        {{paymentList}}
+    </div> -->
+    <div class='card-body'>
+        <!-- <div class='row'>
+            <div class='col-md-2'> Filter by: </div>
+            <div class='col-md-4'>
+                <input type='text'>
+            </div>
+        </div>
+        <div class='row'>
+            <div vlass='col-md-6'>
+                <h4>Filtered by:</h4>
+            </div>
+        </div> -->
+
+        <div *ngIf='displayAddPaymentWindow == true' class='addNewPaymentWindow'>
+            <h1>Add payment</h1>
+            <form (ngSubmit)='letsDoThis()'>
+                <table class='table'>
+                    <thead>
+                        <tr>
+                            <th>Payment Title</th>
+                            <th>Amount of one payment</th>
+                            <th>Whole amount</th>
+                            <th>Deadline</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" [(ngModel)]='paymentName' name='paymentName' /></td>
+                            <td><input type="text" [(ngModel)]='paymentAmount' name='paymentAmount' /></td>
+                            <td><input type="text" [(ngModel)]='whole' name='whole' /></td>
+                            <td><input type="text" [(ngModel)]='deadline' name='deadline' /></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <br />
+        <div class='table-responsive'>
+            <table class='table'>
+                <thead>
+                    <tr>
+                        <th>
+                            <button (click)='toggleAddPaymentWindow()' class='btn btn-primary'>
+                                Add payment
+                            </button>
+                        </th>
+                        <th>Payment Title</th>
+                        <th>Amount of one payment</th>
+                        <th>Whole amount</th>
+                        <th>Deadline</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let payment of payments'>
+                        <td></td>
+                        <td>{{payment.paymentTitle}}</td>
+                        <td>{{payment.amountOfOnePayment}}</td>
+                        <td>{{payment.wholeAmount}}</td>
+                        <td>{{payment.deadline}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
