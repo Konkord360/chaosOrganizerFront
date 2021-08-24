@@ -17,7 +17,8 @@ export class PaymentAdditionComponent {
   };
   @Output() addPayment: EventEmitter<IPayment> = new EventEmitter<IPayment>();
   @Output() paymentModified: EventEmitter<IPayment> = new EventEmitter<IPayment>();
-
+  @Output() actionCanceled: EventEmitter<void> = new EventEmitter<void>();
+  @Output() paymentDeleted: EventEmitter<IPayment> = new EventEmitter<IPayment>();
   letsDoThis() {
     this.addPayment.emit(this.newPayment);
   }
@@ -31,6 +32,10 @@ export class PaymentAdditionComponent {
   }
 
   onDelete(){
-      //todo implement deletition
+    this.paymentDeleted.emit(this.newPayment);
+  }
+  
+  onCancel(){
+    this.actionCanceled.emit();
   }
 }

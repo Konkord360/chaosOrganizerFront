@@ -9,10 +9,15 @@
 	padding: 16px;
 	border: 10px solid black;
 	background-color: white;
-	z-index:1002;
+	z-index: 100;
 	overflow: auto;
 }
-
+.seethroughBackground{
+  z-index: 99;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */

@@ -15,10 +15,15 @@
             </div>
         </div> -->
 
-        <div *ngIf='displayAddPaymentWindow == true' class='addNewPaymentWindow'>
-            <payment-addition [isInModificationMode]='isMeantToBeModified' 
-            [newPayment]='paymentCandidate' (addPayment)='onPaymentAdded($event)' (paymentModified)='onPaymentModified($event, chosenPaymentIndex)'>
-            </payment-addition>
+        <div class="seethroughBackground" *ngIf='displayAddPaymentWindow == true'>
+            <div class='addNewPaymentWindow'>
+                <payment-addition [isInModificationMode]='isMeantToBeModified' [newPayment]='paymentCandidate'
+                    (addPayment)='onPaymentAdded($event)'
+                    (paymentModified)='onPaymentModified($event, chosenPaymentIndex)'
+                    (actionCanceled)='onActionCanceled()'
+                    (paymentDeleted)='onPaymentDeleted($event, chosenPaymentIndex)'>
+                </payment-addition>
+            </div>
         </div>
         <br />
         <div class='table-responsive'>
@@ -39,7 +44,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor='let payment of payments; let i = index' (click)='onTableRowClicked(i)'>
-                        <td></td>
+                        <td><button class="btn btn-secondary">execute payment</button></td>
                         <td>{{payment.paymentTitle}}</td>
                         <td>{{payment.amountOfOnePayment | currency: 'PLN':'symbol'}}</td>
                         <td>{{payment.wholeAmount | currency: 'PLN':'symbol'}}</td>

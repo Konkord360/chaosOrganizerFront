@@ -1,0 +1,8 @@
+.seethroughBackground{
+    height: 100%;
+    width: 100%;
+    opacity: 80%;
+    color: grey;
+    z-index: 100;
+}
+

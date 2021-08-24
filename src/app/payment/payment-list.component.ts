@@ -9,13 +9,13 @@ import { IPayment } from './payment';
 export class PaymentListComponent implements OnInit {
   paymentOwner: string = 'testUser';
   displayAddPaymentWindow: boolean = false;
-  chosenPaymentIndex: number = 0;
+  chosenPaymentIndex: number = 400;
   isMeantToBeModified: boolean = false;
-  paymentCandidate:IPayment = {
-      paymentTitle: '',
-      amountOfOnePayment: 0,
-      wholeAmount: 0,
-      deadline: ''
+  paymentCandidate: IPayment = {
+    paymentTitle: '',
+    amountOfOnePayment: 0,
+    wholeAmount: 0,
+    deadline: '',
   };
 
   payments: IPayment[] = [
@@ -34,15 +34,15 @@ export class PaymentListComponent implements OnInit {
   ];
 
   toggleAddPaymentWindow(): void {
-    this.paymentCandidate = { 
+    this.paymentCandidate = {
       paymentTitle: '',
       amountOfOnePayment: 0,
       wholeAmount: 0,
-      deadline: ''
-    }
+      deadline: '',
+    };
     this.isMeantToBeModified = false;
     this.displayAddPaymentWindow = !this.displayAddPaymentWindow;
-    console.log(this.displayAddPaymentWindow);
+    // console.log(this.displayAddPaymentWindow);
   }
 
   onPaymentAdded(payment: IPayment): void {
@@ -50,20 +50,49 @@ export class PaymentListComponent implements OnInit {
     console.log(payment);
     this.toggleAddPaymentWindow();
   }
-  
-  onPaymentModified(payment: IPayment, index: number): void{
-    this.payments[index]=payment;
+
+  onPaymentModified(payment: IPayment, index: number): void {
+    this.payments[index] = payment;
     console.log(payment);
     this.toggleAddPaymentWindow();
   }
 
   onTableRowClicked(index: number): void {
-    this.isMeantToBeModified = true;
-    this.chosenPaymentIndex = index;
-    this.paymentCandidate = this.payments[index];
+    console.log(index);
+    console.log(this.chosenPaymentIndex);
+    if (index == this.chosenPaymentIndex || this.chosenPaymentIndex != 400) {
+      this.paymentCandidate.amountOfOnePayment =
+        this.payments[index].amountOfOnePayment;
+      this.paymentCandidate.deadline = this.payments[index].deadline;
+      this.paymentCandidate.paymentTitle = this.payments[index].paymentTitle;
+      this.paymentCandidate.wholeAmount = this.payments[index].wholeAmount;
+      this.chosenPaymentIndex = 400;
+      return;
+    } else {
+      this.isMeantToBeModified = true;
+      this.chosenPaymentIndex = index;
+      this.paymentCandidate.amountOfOnePayment =
+        this.payments[index].amountOfOnePayment;
+      this.paymentCandidate.deadline = this.payments[index].deadline;
+      this.paymentCandidate.paymentTitle = this.payments[index].paymentTitle;
+      this.paymentCandidate.wholeAmount = this.payments[index].wholeAmount;
+      this.displayAddPaymentWindow = !this.displayAddPaymentWindow;
+      // this.payments.splice(index, 1);
+      console.log(index);
+      console.log(this.chosenPaymentIndex);
+    }
+  }
+
+  onActionCanceled() {
     this.displayAddPaymentWindow = !this.displayAddPaymentWindow;
-    // this.payments.splice(index, 1);
-    console.log(this.isMeantToBeModified)
+    this.chosenPaymentIndex = 400;
+  }
+
+  onPaymentDeleted(payment: IPayment, index: number) {
+    if (index > -1) {
+      this.payments.splice(index, 1);
+    }
+    this.displayAddPaymentWindow = !this.displayAddPaymentWindow;
   }
 
   ngOnInit(): void {}
