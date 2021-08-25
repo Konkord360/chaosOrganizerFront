@@ -1,13 +1,13 @@
 import { EventEmitter } from '@angular/core';
 import { Component, Input, Output } from '@angular/core';
-import { IPayment } from './payment';
+import { IPayment } from './reminder';
 
 @Component({
-  selector: 'payment-addition',
-  templateUrl: './payment-addition.component.html',
-  styleUrls: ['./payment-addition.component.css'],
+  selector: 'reminder-modification',
+  templateUrl: './reminder-modification.component.html',
+  styleUrls: ['./reminder-modification.component.css'],
 })
-export class PaymentAdditionComponent {
+export class ReminderModificationComponent {
   @Input() isInModificationMode: boolean = false;
   @Input() newPayment: IPayment = {
     paymentTitle: '',

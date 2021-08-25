@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { IPayment } from './payment';
+import { IPayment } from './reminder';
 
 @Component({
-  selector: 'app-payments',
-  templateUrl: './payment-list.component.html',
-  styleUrls: ['./payment-list.component.css'],
+  selector: 'app-reminders',
+  templateUrl: './reminder-list.component.html',
+  styleUrls: ['./reminder-list.component.css'],
 })
-export class PaymentListComponent implements OnInit {
+export class ReminderListComponent implements OnInit {
   paymentOwner: string = 'testUser';
   displayAddPaymentWindow: boolean = false;
   chosenPaymentIndex: number = 400;
@@ -19,18 +19,18 @@ export class PaymentListComponent implements OnInit {
   };
 
   payments: IPayment[] = [
-    {
-      paymentTitle: 'czynsz',
-      amountOfOnePayment: 200,
-      wholeAmount: 0,
-      deadline: '23.08.2021',
-    },
-    {
-      paymentTitle: 'kredyt za dom',
-      amountOfOnePayment: 300,
-      wholeAmount: 200000,
-      deadline: '23.12.2021',
-    },
+    // {
+    //   paymentTitle: 'czynsz',
+    //   amountOfOnePayment: 200,
+    //   wholeAmount: 0,
+    //   deadline: '23.08.2021',
+    // },
+    // {
+    //   paymentTitle: 'kredyt za dom',
+    //   amountOfOnePayment: 300,
+    //   wholeAmount: 200000,
+    //   deadline: '23.12.2021',
+    // },
   ];
 
   toggleAddPaymentWindow(): void {

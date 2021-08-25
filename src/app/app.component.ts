@@ -6,4 +6,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title: string = 'Chaos Organizer';
+  displayPaymentsIndicatior: boolean = true;
+  displayReminders(): void{
+    this.displayPaymentsIndicatior = false;
+  }
+
+  displayPayments(): void{
+    this.displayPaymentsIndicatior = true;
+  }
 }

@@ -1,8 +1,13 @@
 <div>
     <h1>{{title}}</h1>
     <div class="mainScreenSelector">
-        <button>payments</button>
-        <button>reminders</button>
+        <button (click)='displayPayments()'>payments</button>
+        <button (click)='displayReminders()'>reminders</button>
     </div>
-    <app-payments></app-payments>
+    <div *ngIf='displayPaymentsIndicatior'>
+        <app-payments></app-payments>
+    </div>
+    <div *ngIf='displayPaymentsIndicatior == false'>
+        <app-reminders></app-reminders>
+    </div>
 </div>
