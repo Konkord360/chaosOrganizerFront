@@ -1,12 +1,12 @@
-<h1>Add payment</h1>
 <div>
     <div *ngIf='isInModificationMode'>
+        <h1>Modify payment</h1>
         <form (ngSubmit)='modifyPayment()'>
             <table class='table'>
                 <thead>
                     <tr>
                         <th>Payment Title</th>
-                        <th>Amount of one payment</th>
+                        <th>Amount of single payment</th>
                         <th>Whole amount</th>
                         <th>Deadline</th>
                     </tr>
@@ -14,9 +14,27 @@
                 <tbody>
                     <tr>
                         <td><input type="text" [(ngModel)]='newPayment.paymentTitle' name='paymentName' /></td>
-                        <td><input type="text" [(ngModel)]='newPayment.amountOfOnePayment' name='paymentAmount' /></td>
+                        <td><input type="text" [(ngModel)]='newPayment.amountOfSinglePayment' name='paymentAmount' /></td>
                         <td><input type="text" [(ngModel)]='newPayment.wholeAmount' name='whole' /></td>
                         <td><input type="text" [(ngModel)]='newPayment.deadline' name='deadline' /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class='table'>
+                <thead>
+                    <tr>
+                        <th>receiver IBAN</th>
+                        <th>receiver Name</th>
+                        <th>sender IBAN</th>
+                        <th>payed by now</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" [(ngModel)]='newPayment.receiverIBAN' name='receiverIBAN' /></td>
+                        <td><input type="text" [(ngModel)]='newPayment.receiverName' name='receiverName' /></td>
+                        <td><input type="text" [(ngModel)]='newPayment.senderIBAN' name='senderIBAN' /></td>
+                        <td><input type="text" [(ngModel)]='newPayment.payedByNow' name='payedByNow' /></td>
                     </tr>
                 </tbody>
             </table>
@@ -27,12 +45,13 @@
         </form>
     </div>
     <div *ngIf='isInModificationMode == false'>
+        <h1>Add payment</h1>
         <form (ngSubmit)='addNewPayment()'>
             <table class='table'>
                 <thead>
                     <tr>
                         <th>Payment Title</th>
-                        <th>Amount of one payment</th>
+                        <th>Amount of single payment</th>
                         <th>Whole amount</th>
                         <th>Deadline</th>
                     </tr>
@@ -40,9 +59,28 @@
                 <tbody>
                     <tr>
                         <td><input type="text" [(ngModel)]='newPayment.paymentTitle' name='paymentName' /></td>
-                        <td><input type="text" [(ngModel)]='newPayment.amountOfOnePayment' name='paymentAmount' /></td>
+                        <td><input type="text" [(ngModel)]='newPayment.amountOfSinglePayment' name='paymentAmount' />
+                        </td>
                         <td><input type="text" [(ngModel)]='newPayment.wholeAmount' name='whole' /></td>
                         <td><input type="text" [(ngModel)]='newPayment.deadline' name='deadline' /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class='table'>
+                <thead>
+                    <tr>
+                        <th>receiver IBAN</th>
+                        <th>receiver Name</th>
+                        <th>sender IBAN</th>
+                        <th>payed by now</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" [(ngModel)]='newPayment.receiverIBAN' name='receiverIBAN' /></td>
+                        <td><input type="text" [(ngModel)]='newPayment.receiverName' name='receiverName' /></td>
+                        <td><input type="text" [(ngModel)]='newPayment.senderIBAN' name='senderIBAN' /></td>
+                        <td><input type="text" [(ngModel)]='newPayment.payedByNow' name='payedByNow' /></td>
                     </tr>
                 </tbody>
             </table>

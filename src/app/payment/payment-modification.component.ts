@@ -11,31 +11,37 @@ export class PaymentModificationComponent {
   @Input() isInModificationMode: boolean = false;
   @Input() newPayment: IPayment = {
     paymentTitle: '',
-    amountOfOnePayment: 0,
+    amountOfSinglePayment: 0,
     wholeAmount: 0,
     deadline: '',
+    receiverIBAN: '',
+    receiverName: '',
+    senderIBAN: '',
+    payedByNow: 0,
   };
   @Output() addPayment: EventEmitter<IPayment> = new EventEmitter<IPayment>();
-  @Output() paymentModified: EventEmitter<IPayment> = new EventEmitter<IPayment>();
+  @Output() paymentModified: EventEmitter<IPayment> =
+    new EventEmitter<IPayment>();
   @Output() actionCanceled: EventEmitter<void> = new EventEmitter<void>();
-  @Output() paymentDeleted: EventEmitter<IPayment> = new EventEmitter<IPayment>();
+  @Output() paymentDeleted: EventEmitter<IPayment> =
+    new EventEmitter<IPayment>();
   letsDoThis() {
     this.addPayment.emit(this.newPayment);
   }
 
-  addNewPayment(){
+  addNewPayment() {
     this.addPayment.emit(this.newPayment);
   }
 
-  modifyPayment(){
-     this.paymentModified.emit(this.newPayment); 
+  modifyPayment() {
+    this.paymentModified.emit(this.newPayment);
   }
 
-  onDelete(){
+  onDelete() {
     this.paymentDeleted.emit(this.newPayment);
   }
-  
-  onCancel(){
+
+  onCancel() {
     this.actionCanceled.emit();
   }
 }

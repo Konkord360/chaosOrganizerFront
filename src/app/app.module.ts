@@ -10,6 +10,7 @@ import { registerLocaleData } from '@angular/common';
 import {PaymentModificationComponent} from './payment/payment-modification.component';
 import { ReminderModificationComponent } from './reminder/reminder-modification.component';
 import { ReminderListComponent } from './reminder/reminder-list.component';
+import { HttpClientModule } from '@angular/common/http';
 
 registerLocaleData(localeDE);
 @NgModule({
@@ -22,7 +23,8 @@ registerLocaleData(localeDE);
   ],
   imports: [
     FormsModule,
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [{
     provide: LOCALE_ID,

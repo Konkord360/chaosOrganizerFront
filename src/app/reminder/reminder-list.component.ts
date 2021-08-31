@@ -7,7 +7,7 @@ import { IPayment } from './reminder';
   styleUrls: ['./reminder-list.component.css'],
 })
 export class ReminderListComponent implements OnInit {
-  paymentOwner: string = 'testUser';
+  reminderOwner: string = 'testUser';
   displayAddPaymentWindow: boolean = false;
   chosenPaymentIndex: number = 400;
   isMeantToBeModified: boolean = false;

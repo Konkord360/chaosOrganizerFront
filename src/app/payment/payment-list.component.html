@@ -36,7 +36,7 @@
                             </button>
                         </th>
                         <th>Payment Title</th>
-                        <th>Amount of one payment</th>
+                        <th>Amount of single payment</th>
                         <th>Whole amount</th>
                         <th>Deadline</th>
                         <th></th>
@@ -46,7 +46,7 @@
                     <tr *ngFor='let payment of payments; let i = index' (click)='onTableRowClicked(i)'>
                         <td><button class="btn btn-secondary">execute payment</button></td>
                         <td>{{payment.paymentTitle}}</td>
-                        <td>{{payment.amountOfOnePayment | currency: 'PLN':'symbol'}}</td>
+                        <td>{{payment.amountOfSinglePayment | currency: 'PLN':'symbol'}}</td>
                         <td>{{payment.wholeAmount | currency: 'PLN':'symbol'}}</td>
                         <td>{{payment.deadline}}</td>
                     </tr>

@@ -1,48 +1,48 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { IPayment } from './payment';
+import { PaymentService } from './payment.serivce';
 
 @Component({
   selector: 'app-payments',
   templateUrl: './payment-list.component.html',
   styleUrls: ['./payment-list.component.css'],
+  providers: [PaymentService],
 })
 export class PaymentListComponent implements OnInit {
+ subscription!: Subscription;
+
+  errorMessage: string = '';
   paymentOwner: string = 'testUser';
   displayAddPaymentWindow: boolean = false;
   chosenPaymentIndex: number = 400;
   isMeantToBeModified: boolean = false;
   paymentCandidate: IPayment = {
     paymentTitle: '',
-    amountOfOnePayment: 0,
+    amountOfSinglePayment: 0,
     wholeAmount: 0,
     deadline: '',
+    receiverIBAN: '',
+    receiverName: '',
+    senderIBAN: '',
+    payedByNow: 0,
   };
 
-  payments: IPayment[] = [
-    {
-      paymentTitle: 'czynsz',
-      amountOfOnePayment: 200,
-      wholeAmount: 0,
-      deadline: '23.08.2021',
-    },
-    {
-      paymentTitle: 'kredyt za dom',
-      amountOfOnePayment: 300,
-      wholeAmount: 200000,
-      deadline: '23.12.2021',
-    },
-  ];
+  payments: IPayment[] = [];
 
   toggleAddPaymentWindow(): void {
     this.paymentCandidate = {
       paymentTitle: '',
-      amountOfOnePayment: 0,
+      amountOfSinglePayment: 0,
       wholeAmount: 0,
       deadline: '',
+      receiverIBAN: '',
+      receiverName: '',
+      senderIBAN: '',
+      payedByNow: 0,
     };
     this.isMeantToBeModified = false;
     this.displayAddPaymentWindow = !this.displayAddPaymentWindow;
-    // console.log(this.displayAddPaymentWindow);
   }
 
   onPaymentAdded(payment: IPayment): void {
@@ -58,14 +58,10 @@ export class PaymentListComponent implements OnInit {
   }
 
   onTableRowClicked(index: number): void {
-      this.isMeantToBeModified = true;
-      this.chosenPaymentIndex = index;
-      this.paymentCandidate.amountOfOnePayment =
-        this.payments[index].amountOfOnePayment;
-      this.paymentCandidate.deadline = this.payments[index].deadline;
-      this.paymentCandidate.paymentTitle = this.payments[index].paymentTitle;
-      this.paymentCandidate.wholeAmount = this.payments[index].wholeAmount;
-      this.displayAddPaymentWindow = !this.displayAddPaymentWindow;
+    this.isMeantToBeModified = true;
+    this.chosenPaymentIndex = index;
+    this.paymentCandidate = this.payments[index];
+    this.displayAddPaymentWindow = !this.displayAddPaymentWindow;
   }
 
   onActionCanceled() {
@@ -80,5 +76,16 @@ export class PaymentListComponent implements OnInit {
     this.displayAddPaymentWindow = !this.displayAddPaymentWindow;
   }
 
-  ngOnInit(): void {}
+  constructor(private paymentService: PaymentService) {}
+
+  ngOnInit(): void {
+    this.subscription = this.paymentService.getPayments().subscribe({
+      next: payments => this.payments = payments,
+      error: err => this.errorMessage = err
+    });
+  }
+
+  ngOnDestroy(): void{
+    this.subscription.unsubscribe();
+  }
 }

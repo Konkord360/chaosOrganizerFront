@@ -11,6 +11,7 @@
 	background-color: white;
 	z-index: 100;
 	overflow: auto;
+  word-wrap: break-word;
 }
 .seethroughBackground{
   z-index: 99;
