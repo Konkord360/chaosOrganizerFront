@@ -40,8 +40,8 @@
             </table>
             <br />
             <button type="submit">Modify</button>
-            <button (click)='onDelete()'>Delete</button>
-            <button (click)='onCancel()'>Cancel</button>
+            <button (click)='onDelete()' name='delete'>Delete</button>
+            <button (click)='onCancel()' name ='cancel'>Cancel</button>
         </form>
     </div>
     <div *ngIf='isInModificationMode == false'>
@@ -86,7 +86,7 @@
             </table>
             <br />
             <button type="submit">Add new payment</button>
-            <button (click)='onCancel()'>Cancel</button>
+            <button (click)='onCancel()' name='cancel'>Cancel</button>
         </form>
     </div>
 </div>

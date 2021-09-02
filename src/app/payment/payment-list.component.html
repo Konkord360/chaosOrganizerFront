@@ -21,7 +21,7 @@
                     (addPayment)='onPaymentAdded($event)'
                     (paymentModified)='onPaymentModified($event, chosenPaymentIndex)'
                     (actionCanceled)='onActionCanceled()'
-                    (paymentDeleted)='onPaymentDeleted($event, chosenPaymentIndex)'>
+                    (paymentDeleted)='onPaymentDeleted(chosenPaymentIndex)'>
                 </payment-modification>
             </div>
         </div>
@@ -45,10 +45,10 @@
                 <tbody>
                     <tr *ngFor='let payment of payments; let i = index' (click)='onTableRowClicked(i)'>
                         <td><button class="btn btn-secondary">execute payment</button></td>
-                        <td>{{payment.paymentTitle}}</td>
+                        <td name = 'test'>{{payment.paymentTitle}}</td>
                         <td>{{payment.amountOfSinglePayment | currency: 'PLN':'symbol'}}</td>
                         <td>{{payment.wholeAmount | currency: 'PLN':'symbol'}}</td>
-                        <td>{{payment.deadline}}</td>
+                        <td>{{payment.deadline | date: 'dd/MM/yyyy'}}</td>
                     </tr>
                 </tbody>
             </table>

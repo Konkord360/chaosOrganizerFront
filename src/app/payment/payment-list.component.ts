@@ -46,21 +46,26 @@ export class PaymentListComponent implements OnInit {
   }
 
   onPaymentAdded(payment: IPayment): void {
-    this.payments.push(payment);
+    // this.payments.push(payment);
+    this.paymentService.addPayment(payment).subscribe
+    (
+      payment => this.payments.push(payment)
+    );
     console.log(payment);
     this.toggleAddPaymentWindow();
   }
 
   onPaymentModified(payment: IPayment, index: number): void {
-    this.payments[index] = payment;
-    console.log(payment);
+    this.paymentService.modifyPayment(payment, index).subscribe(
+      payments => this.payments = payments
+    );
     this.toggleAddPaymentWindow();
   }
 
   onTableRowClicked(index: number): void {
     this.isMeantToBeModified = true;
     this.chosenPaymentIndex = index;
-    this.paymentCandidate = this.payments[index];
+    Object.assign(this.paymentCandidate, this.payments[index]);
     this.displayAddPaymentWindow = !this.displayAddPaymentWindow;
   }
 
@@ -69,10 +74,14 @@ export class PaymentListComponent implements OnInit {
     this.chosenPaymentIndex = 400;
   }
 
-  onPaymentDeleted(payment: IPayment, index: number) {
-    if (index > -1) {
-      this.payments.splice(index, 1);
-    }
+  onPaymentDeleted(index: number) {
+    this.paymentService.deletePayment(index).subscribe(
+      payments => this.payments = payments
+    );
+    // if (index > -1) {
+    //   this.payments.splice(index, 1);
+    // }
+    
     this.displayAddPaymentWindow = !this.displayAddPaymentWindow;
   }
 
