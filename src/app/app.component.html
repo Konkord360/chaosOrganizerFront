@@ -1,13 +1,18 @@
-<div>
-    <h1>{{title}}</h1>
-    <div class="mainScreenSelector">
-        <button (click)='displayPayments()'>payments</button>
-        <button (click)='displayReminders()'>reminders</button>
+
+    <div *ngIf='!isUserLoggedIn'>
+        <user-login (userAuthorized)='login($event)'></user-login>
     </div>
-    <div *ngIf='displayPaymentsIndicatior'>
-        <app-payments></app-payments>
+    <div *ngIf='isUserLoggedIn'>
+        <button (click)='logout()'>logout</button>
+        <h1>{{title}}</h1>
+        <div class="mainScreenSelector">
+            <button (click)='displayPayments()'>payments</button>
+            <button (click)='displayReminders()'>reminders</button>
+        </div>
+        <div *ngIf='displayPaymentsIndicatior'>
+            <app-payments></app-payments>
+        </div>
+        <div *ngIf='displayPaymentsIndicatior == false'>
+            <app-reminders></app-reminders>
+        </div>
     </div>
-    <div *ngIf='displayPaymentsIndicatior == false'>
-        <app-reminders></app-reminders>
-    </div>
-</div>

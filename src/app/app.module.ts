@@ -11,6 +11,7 @@ import {PaymentModificationComponent} from './payment/payment-modification.compo
 import { ReminderModificationComponent } from './reminder/reminder-modification.component';
 import { ReminderListComponent } from './reminder/reminder-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './authorization/login/login.component';
 
 registerLocaleData(localeDE);
 @NgModule({
@@ -19,7 +20,8 @@ registerLocaleData(localeDE);
     PaymentListComponent,
     ReminderListComponent,
     PaymentModificationComponent,
-    ReminderModificationComponent
+    ReminderModificationComponent,
+    LoginComponent
   ],
   imports: [
     FormsModule,

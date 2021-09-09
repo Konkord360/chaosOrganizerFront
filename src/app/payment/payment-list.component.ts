@@ -49,7 +49,12 @@ export class PaymentListComponent implements OnInit {
     // this.payments.push(payment);
     this.paymentService.addPayment(payment).subscribe
     (
-      payment => this.payments.push(payment)
+      payment => {
+        if (!this.payments === null)
+          this.payments.push(payment)
+        else
+          this.payments = Array.of(payment);
+      }
     );
     console.log(payment);
     this.toggleAddPaymentWindow();
