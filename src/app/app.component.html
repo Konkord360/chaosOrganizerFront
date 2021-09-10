@@ -1,6 +1,6 @@
 
     <div *ngIf='!isUserLoggedIn'>
-        <user-login (userAuthorized)='login($event)'></user-login>
+        <user-login (userAuthorized)='login($event)' (userRegistered)='register($event)'></user-login>
     </div>
     <div *ngIf='isUserLoggedIn'>
         <button (click)='logout()'>logout</button>

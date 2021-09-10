@@ -24,6 +24,11 @@ export class AppComponent {
     this.isUserLoggedIn = localStorage["isAuthorized"];
   }
 
+  register(isRegister: boolean){
+    // if(isRegister)
+      // this.userSuccessfullyRegister = true;
+  }
+
   logout(){
     console.log("trying to log out")
     localStorage.setItem("isAuthorized", "false");

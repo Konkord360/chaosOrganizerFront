@@ -1,10 +1,27 @@
-<div class='login'>
-    <h1>LOG IN</h1>
-    <form (ngSubmit)='login()'>
-        <label for='username'>username</label>
-        <input type = "text" [(ngModel)]='userLogin.username' name='username' id='username'>
-        <label for='password'>password</label>
-        <input type = "password"[(ngModel)]='userLogin.password' name='password' id='password'>
-        <input type="submit" value="Log in">
-    </form>
+<div>
+    <h1>{{headerText}}</h1>
+    <button (click)='displayRegistrationForm()'>{{buttonText}}</button>
+    <div *ngIf='displayLogin'>
+        <h1>LOG IN</h1>
+        <form (ngSubmit)='login()'>
+            <label for='username'>username</label>
+            <input type="text" [(ngModel)]='userLogin.username' name='username' id='username'>
+            <label for='password'>password</label>
+            <input type="password" [(ngModel)]='userLogin.password' name='password' id='password'>
+            <input type="submit" value="Log in">
+        </form>
+    </div>
+    <div *ngIf='!displayLogin'>
+        <h1>Register</h1>
+        <form (ngSubmit)='register()'>
+            <label for='username'>username</label>
+            <input type="text" [(ngModel)]='userRegister.username' name='username' id='username'>
+            <label for='email'>email</label>
+            <input type="text"[(ngModel)]='userRegister.email' name='email' id='email'>
+            <label for='password'>password</label>
+            <input type="password" [(ngModel)]='userRegister.password' name='password' id='password'>
+            <input type="submit" value="Register">
+        </form>
+    </div>
+
 </div>

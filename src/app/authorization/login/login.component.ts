@@ -15,12 +15,22 @@ export class LoginComponent {
   @Output() userAuthorized: EventEmitter<boolean> = new EventEmitter<boolean>();
 //   isAuthorized: boolean = false;
 
-  userData!: UserData;
+@Output() userRegistered: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  userData!: UserData;
+  displayLogin: boolean = true;
+  headerText:string = 'Dont have an account? Sign up!';
+  buttonText:string = 'Sign up';
   userLogin = {
     username: '',
     password: '',
   };
+
+  userRegister = {
+    username: '',
+    password: '',
+    email: ''
+  }
 
   constructor(private loginService: LoginService) {}
 
@@ -36,6 +46,30 @@ export class LoginComponent {
             this.userAuthorized.emit(true);
         }
       );
+  }
+
+  register(){
+    this.loginService.registerUser(JSON.stringify(this.userRegister)).subscribe(
+      response=> {
+        console.log(response);
+        this.userRegistered.emit(true);
+        this.displayLogin = true;
+      }
+    )
+  }
+
+  displayRegistrationForm(){
+    this.displayLogin = !this.displayLogin;
+    if(this.displayLogin === true)
+    {
+      this.buttonText = 'Sign up';
+      this.headerText = 'Dont have an account? Sign up!';
+    }
+    else
+    {
+      this.buttonText = 'Sign in';
+      this.headerText = 'Already have an account? Sign in!';
+    }
   }
 
 }

@@ -23,10 +23,20 @@ export class LoginService {
   private loginUserUrl: string =
     'http://localhost:8080/api/auth/signin';
 
+  private registerUserUrl: string = 'http://localhost:8080/api/auth/signup';
+
     loginUser(userLogin : string) :Observable<UserData>
     {
         console.log(userLogin);
         return this.http.post<UserData>(this.loginUserUrl, userLogin, this.httpOptions).pipe(
+            catchError(this.handleError)
+        );
+    }
+
+    registerUser(userRegister: string) :Observable<string>
+    {
+        console.log(userRegister);
+        return this.http.post<string>(this.registerUserUrl, userRegister, this.httpOptions).pipe(
             catchError(this.handleError)
         );
     }
