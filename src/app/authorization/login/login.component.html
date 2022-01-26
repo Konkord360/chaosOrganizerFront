@@ -1,11 +1,11 @@
 <div>
     <h1>{{headerText}}</h1>
-    <button (click)='displayRegistrationForm()'>{{buttonText}}</button>
+    <button (click)='displayRegistrationForm()' class='buttonClass'>{{buttonText}}</button>
     <div *ngIf='displayLogin'>
         <h1>LOG IN</h1>
         <form (ngSubmit)='login()'>
-            <label for='username'>username</label>
-            <input type="text" [(ngModel)]='userLogin.username' name='username' id='username'>
+            <label for='username'>email</label>
+            <input type="text" [(ngModel)]='userLogin.email' name='username' id='username'>
             <label for='password'>password</label>
             <input type="password" [(ngModel)]='userLogin.password' name='password' id='password'>
             <input type="submit" value="Log in">
@@ -14,8 +14,10 @@
     <div *ngIf='!displayLogin'>
         <h1>Register</h1>
         <form (ngSubmit)='register()'>
-            <label for='username'>username</label>
-            <input type="text" [(ngModel)]='userRegister.username' name='username' id='username'>
+            <label for='username'>firstName</label>
+            <input type="text" [(ngModel)]='userRegister.firstName' name='surname' id='surname'>
+            <label for='username'>surname</label>
+            <input type="text" [(ngModel)]='userRegister.surname' name='surname' id='surname'>
             <label for='email'>email</label>
             <input type="text"[(ngModel)]='userRegister.email' name='email' id='email'>
             <label for='password'>password</label>
@@ -23,5 +25,7 @@
             <input type="submit" value="Register">
         </form>
     </div>
-
+      <button (click)="loginWithGoogle()" mat-raised-button class="buttonClass">
+        Sign up with Google!
+      </button>   
 </div>

@@ -25,6 +25,8 @@ export class LoginService {
 
   private registerUserUrl: string = 'http://localhost:8080/api/auth/signup';
 
+  private loginWithGoogleUrl: string = 'http://localhost:8080/api/auth/loginWithGoogle';
+
     loginUser(userLogin : string) :Observable<UserData>
     {
         console.log(userLogin);
@@ -39,6 +41,14 @@ export class LoginService {
         return this.http.post<string>(this.registerUserUrl, userRegister, this.httpOptions).pipe(
             catchError(this.handleError)
         );
+    }
+
+    loginUserWithGoogle(userToken: string)
+    {
+      console.log(userToken);
+      return this.http.post<string>(this.loginWithGoogleUrl, userToken, this.httpOptions).pipe(
+        catchError(this.handleError)
+      )
     }
 
     private handleError(err: HttpErrorResponse) {

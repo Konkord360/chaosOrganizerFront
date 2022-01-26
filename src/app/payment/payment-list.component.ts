@@ -50,7 +50,7 @@ export class PaymentListComponent implements OnInit {
     this.paymentService.addPayment(payment).subscribe
     (
       payment => {
-        if (!this.payments === null)
+        if (this.payments != null)
           this.payments.push(payment)
         else
           this.payments = Array.of(payment);

@@ -16,13 +16,13 @@ httpOptions = {
 };
  
   private getUserPaymentsUrl: string =
-    'http://localhost:8080/getPayments?userLogin=' + localStorage.getItem("username");
+    'http://localhost:8080/getPayments?userEmail=' + localStorage.getItem("email");
   private addUserPaymentUrl: string =
-    'http://localhost:8080/addPayment?ownerLogin=' + localStorage.getItem("username");
+    'http://localhost:8080/addPayment?userEmail=' + localStorage.getItem("email");
   private modifyUserPaymentUrl: string =
-    'http://localhost:8080/modifyPayment?ownerLogin=' + localStorage.getItem("username") + '&paymentIndex=';
+    'http://localhost:8080/modifyPayment?userEmail=' + localStorage.getItem("email") + '&paymentIndex=';
   private deleteUserPaymentUrl: string =
-    'http://localhost:8080/deletePayment?ownerLogin=' + localStorage.getItem("username") + '&paymentIndex=';
+    'http://localhost:8080/deletePayment?userEmail=' + localStorage.getItem("email") + '&paymentIndex=';
 
   constructor(private http: HttpClient) {
   }
