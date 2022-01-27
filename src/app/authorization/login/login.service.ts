@@ -43,10 +43,10 @@ export class LoginService {
         );
     }
 
-    loginUserWithGoogle(userToken: string)
+    loginUserWithGoogle(userToken: string) :Observable<UserData>
     {
       console.log(userToken);
-      return this.http.post<string>(this.loginWithGoogleUrl, userToken, this.httpOptions).pipe(
+      return this.http.post<UserData>(this.loginWithGoogleUrl, userToken, this.httpOptions).pipe(
         catchError(this.handleError)
       )
     }
